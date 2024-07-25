@@ -1,0 +1,197 @@
+﻿@page "/"
+@using GoalsClient.Data.Entities
+
+@inject IGoalService GoalServices
+@inject ITaskItemsService TaskItemsServices
+@inject ISnackbar Snackbar
+
+<PageTitle>Control de metas</PageTitle>
+
+<MudText Typo="Typo.h6" Class="mb-2">Control de metas</MudText>
+<MudGrid >
+    <MudItem xs="4" sm="4" md="4" lg="4">
+        <MudPaper Class="mud-width-full pa-3" Style="height: 80vh; overflow-y: scroll">
+            <MudButton @onclick="() => ShowGoalDialog(false)" Variant="Variant.Filled" Color="Color.Info" StartIcon="@Icons.Material.Filled.Add" Class="mb-2">Nueva meta</MudButton>
+            <MudSimpleTable>
+                <tbody>
+                    @foreach(Goal goal in _Goals)
+                    {
+                        int totalCompleteTaskItems = _Goals
+                        .Where(g => g.GoalId == goal.GoalId) 
+                        .SelectMany(g => g.TaskItems)
+                        .Count(t => t.Status == "Completada");
+
+                        var totalTasks = goal.TotalTasks;
+                        var completionPercentage = totalTasks > 0 ? (double)totalCompleteTaskItems / totalTasks * 100 : 0;
+
+                        <tr>
+                            <td style="@($"background-color: {(goalSelectedId == goal.GoalId ? "#f5f5f6" : "")}")">
+                                <MudItem Class="d-flex" Style="justify-content: space-between; cursor: pointer;" @onclick="() => SelectGoal(goal.GoalId)">
+                                    <MudText Style="font-weight:bold; cursor: pointer;" @onclick="() => SelectGoal(goal.GoalId)">@goal.Name</MudText>
+                                    <MudItem Class="d-flex" Style="float:right; justify-content: space-between">
+                                        <MudIconButton Icon="@Icons.Material.Filled.Edit" Color="Color.Default" Class="mr-2" Size="Size.Small" @onclick="() => ShowGoalDialog(true, goal)"></MudIconButton>
+                                        <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Default" Size="Size.Small" @onclick="() => OpenDeleteDialog(goal.GoalId)"></MudIconButton>
+                                    </MudItem>
+                                </MudItem>
+
+                                <MudItem @onclick="() => SelectGoal(goal.GoalId)" Style="cursor: pointer;">
+                                    <MudText>Fecha creada: @goal.Date.ToShortDateString()</MudText>
+                                    <MudItem Class="d-flex" Style="justify-content: space-between;">
+                                        <span>Tareas completadas: @totalCompleteTaskItems/@totalTasks</span>
+                                        <span>@completionPercentage.ToString("0.00")%</span>
+                                    </MudItem>
+                                    <MudProgressLinear Color="Color.Primary" Size="Size.Large" Value="@completionPercentage" Class="my-7">
+                                    </MudProgressLinear>
+                                </MudItem>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </MudSimpleTable>
+        </MudPaper>
+    </MudItem>
+    <MudItem xs="8" sm="8" md="8" lg="8">
+        <MudPaper Class=" mud-width-full pa-3" Style="height: 80vh; overflow-y: scroll">
+
+            <MudButton @onclick="() => ShowTaskItemDialog(false)" Variant="Variant.Filled" Color="Color.Info" StartIcon="@Icons.Material.Filled.Add" Class="mb-2 mr-2">Agregar Tarea</MudButton>
+            @if(IsTaskItemSelected)
+            {
+                <MudButton @onclick="() => UpdateTaskItem(true)" Variant="Variant.Filled" Color="Color.Info" StartIcon="@Icons.Material.Filled.CheckCircleOutline" Class="mb-2">Completar Tarea</MudButton>
+                <MudButton @onclick="() => ShowTaskItemDialog(true)" Variant="Variant.Filled" Color="Color.Info" StartIcon="@Icons.Material.Filled.Edit" Class="mb-2">Editar</MudButton>
+                <MudButton @onclick="() => OpenDeleteDialog(selectedTaskItem.TaskItemId, false)" Variant="Variant.Filled" Color="Color.Info" StartIcon="@Icons.Material.Filled.Delete" Class="mb-2">Eliminar</MudButton>
+            }
+            @if (goalSelectedId != -1)
+            {
+                <MudTable T="TaskItem" Items="FilteredTaskItems" Hover="true">
+                    <HeaderContent>
+                        <MudTh style="background-color: #adc2c2; font-weight: bold;"></MudTh>
+                        <MudTh style="background-color: #adc2c2; font-weight: bold;"></MudTh>
+                        <MudTh style="background-color: #adc2c2; font-weight: bold;">
+                            Tarea
+                            <MudTextField  @bind-Value="taskFilter" Variant="Variant.Outlined" Margin="Margin.Dense" Immediate
+                                          Style="background-color: #ffffff; color: #000000;" Clearable />
+                        </MudTh>
+                        <MudTh style="background-color: #adc2c2; font-weight: bold;">
+                            Fecha
+                            <MudDatePicker Placeholder="dd/mm/aaaa" @bind-Date="dateFilter" Variant="Variant.Outlined" Margin="Margin.Dense"
+                                           Style="background-color: #ffffff; color: #000000;" Color="Color.Info" Clearable />
+                        </MudTh>
+                        <MudTh style="background-color: #adc2c2; font-weight: bold;">
+                            Estado
+                            <MudTextField  @bind-Value="statusFilter" Variant="Variant.Outlined" Margin="Margin.Dense" Immediate
+                                          Style="background-color: #ffffff; color: #000000;" Clearable />
+                        </MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd @onclick="() => SelectTaskItem(context)" Style="@($"background-color: {(selectedTaskItem == context ? "#c2dbff" : "")}")">
+                            <MudCheckBox T="bool" Value="@(selectedTaskItem == context)" Color="Color.Primary" UnCheckedColor="Color.Default" Class="mr-2"
+                                         ValueChanged="(e) => SelectTaskItem(e ? context : null)">
+                            </MudCheckBox>
+                        </MudTd>
+                        <MudTd Style="@($"background-color: {(selectedTaskItem == context ? "#c2dbff" : "")}")">
+                            <MudRating SelectedValue="0" MaxValue="1" />
+                        </MudTd>
+                        <MudTd @onclick="() => SelectTaskItem(context)" Style="@($"background-color: {(selectedTaskItem == context ? "#c2dbff" : "")}")">
+                            @context.Name
+                        </MudTd>
+                        <MudTd @onclick="() => SelectTaskItem(context)" Style="@($"background-color: {(selectedTaskItem == context ? "#c2dbff" : "")}")">@context.Date.ToShortDateString()</MudTd>
+                        <MudTd @onclick="() => SelectTaskItem(context)" Style="@($"background-color: {(selectedTaskItem == context ? "#c2dbff" : "")}")">
+                            @if (context.Status == "Completada")
+                            {
+                                <span style="color: #00664a; font-weight: bold">@context.Status</span>
+                            }
+                            else
+                            {
+                                <span>@context.Status</span>
+
+                            }
+
+                        </MudTd>
+                    </RowTemplate>
+                    <PagerContent>
+                        <MudTablePager PageSizeOptions="new int[]{5, 10, 20, 50, 100}" />
+                    </PagerContent>
+                </MudTable>
+            }
+        </MudPaper>
+    </MudItem>
+</MudGrid>
+
+
+
+
+@*Goal Dialog Create / Edit*@
+<MudDialog DisableSidePadding="false" @bind-IsVisible="showGoalDialog" Options="dialogGoalOptions">
+    <TitleContent >
+        <MudText Typo="Typo.h6" Style="text-align: center;">
+            @(isEditing ? "Actualizar Meta" : "Agregar nueva meta")
+        </MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudTextField T="string" Label="Nombre" @bind-Value="goalName" MaxLength="80"/>
+    </DialogContent>
+    <DialogActions>
+        @if (isEditing)
+        {
+            <MudButton OnClick="UpdateGoal" Variant="Variant.Filled" Color="Color.Info">Actualizar</MudButton>
+        }
+        else
+        {
+            <MudButton OnClick="CreateGoal" Variant="Variant.Filled" Color="Color.Info">Aceptar</MudButton>
+        }        
+        <MudButton OnClick="CloseGoalDialog" Variant="Variant.Filled">Cancelar</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@*Task ITem Dialog Create / Edit*@
+<MudDialog DisableSidePadding="false" @bind-IsVisible="showTaskDialog" Options="dialogGoalOptions">
+    <TitleContent>
+        <MudText Typo="Typo.h6" Style="text-align: center;">
+            @(isEditingTask ? "Actualizar Tarea" : "Agregar nueva tarea")
+        </MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudTextField T="string" Label="Nombre" @bind-Value="taskItemName" MaxLength="80" />
+    </DialogContent>
+    <DialogActions>
+        @if (isEditingTask)
+        {
+            <MudButton @onclick="() => UpdateTaskItem()" Variant="Variant.Filled" Color="Color.Info">Actualizar</MudButton>
+        }
+        else
+        {
+            <MudButton OnClick="CreateTaskItem" Variant="Variant.Filled" Color="Color.Info">Aceptar</MudButton>
+        }        
+        <MudButton OnClick="CloseTaskDialog" Variant="Variant.Filled">Cancelar</MudButton>
+    </DialogActions>
+</MudDialog>
+
+
+@*Delete modal*@
+<MudDialog @bind-IsVisible="visibleDelete" Options="dialogDeleteOptions">
+    <TitleContent>
+        <MudText Typo="Typo.h4" Style="text-align: center;">
+            ¿Está seguro?
+        </MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudText Class="mt-4 mb-4">
+            @if (IsDeleteGoal)
+            {
+                <span>
+                    Que desea eliminar la meta seleccionada
+                </span>
+            }
+            else
+            {
+                <span>
+                    Que desea eliminar la tarea seleccionada
+                </span>
+            }
+        </MudText>
+    </DialogContent>
+    <DialogActions>
+        <MudButton @onclick="() => DeleteGoal()" Color="Color.Info" StartIcon="@Icons.Material.Filled.Delete" Variant="Variant.Filled">Aceptar</MudButton>
+        <MudButton OnClick="CloseDeleteModal" Variant="Variant.Filled">Cancelar</MudButton>
+    </DialogActions>
+</MudDialog>

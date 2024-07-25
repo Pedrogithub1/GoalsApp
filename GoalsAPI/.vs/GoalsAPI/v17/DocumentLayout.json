@@ -1,0 +1,219 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E7D5A0C8-BD6B-4F58-94B6-E81F953E4B0A}|GoalsAPI\\GoalsAPI.csproj|c:\\users\\pedro\\source\\repos\\goalsapp\\goalsapi\\goalsapi\\migrations\\20240725212947_initialmigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7D5A0C8-BD6B-4F58-94B6-E81F953E4B0A}|GoalsAPI\\GoalsAPI.csproj|solutionrelative:goalsapi\\migrations\\20240725212947_initialmigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Pedro\\source\\repos\\GoalsAPI\\GoalsAPI\\Migrations\\20240725212225_InitialMigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7D5A0C8-BD6B-4F58-94B6-E81F953E4B0A}|GoalsAPI\\GoalsAPI.csproj|c:\\users\\pedro\\source\\repos\\goalsapp\\goalsapi\\goalsapi\\controllers\\goalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7D5A0C8-BD6B-4F58-94B6-E81F953E4B0A}|GoalsAPI\\GoalsAPI.csproj|solutionrelative:goalsapi\\controllers\\goalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7D5A0C8-BD6B-4F58-94B6-E81F953E4B0A}|GoalsAPI\\GoalsAPI.csproj|c:\\users\\pedro\\source\\repos\\goalsapp\\goalsapi\\goalsapi\\services\\goalservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7D5A0C8-BD6B-4F58-94B6-E81F953E4B0A}|GoalsAPI\\GoalsAPI.csproj|solutionrelative:goalsapi\\services\\goalservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7D5A0C8-BD6B-4F58-94B6-E81F953E4B0A}|GoalsAPI\\GoalsAPI.csproj|c:\\users\\pedro\\source\\repos\\goalsapp\\goalsapi\\goalsapi\\controllers\\taskitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7D5A0C8-BD6B-4F58-94B6-E81F953E4B0A}|GoalsAPI\\GoalsAPI.csproj|solutionrelative:goalsapi\\controllers\\taskitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7D5A0C8-BD6B-4F58-94B6-E81F953E4B0A}|GoalsAPI\\GoalsAPI.csproj|c:\\users\\pedro\\source\\repos\\goalsapp\\goalsapi\\goalsapi\\services\\igoalservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7D5A0C8-BD6B-4F58-94B6-E81F953E4B0A}|GoalsAPI\\GoalsAPI.csproj|solutionrelative:goalsapi\\services\\igoalservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Pedro\\source\\repos\\GoalsAPI\\GoalsAPI\\Migrations\\20240725193626_InitialMigration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7D5A0C8-BD6B-4F58-94B6-E81F953E4B0A}|GoalsAPI\\GoalsAPI.csproj|c:\\users\\pedro\\source\\repos\\goalsapp\\goalsapi\\goalsapi\\models\\goaldtos\\goalforcreationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7D5A0C8-BD6B-4F58-94B6-E81F953E4B0A}|GoalsAPI\\GoalsAPI.csproj|solutionrelative:goalsapi\\models\\goaldtos\\goalforcreationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7D5A0C8-BD6B-4F58-94B6-E81F953E4B0A}|GoalsAPI\\GoalsAPI.csproj|c:\\users\\pedro\\source\\repos\\goalsapp\\goalsapi\\goalsapi\\models\\goaldtos\\goalforupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7D5A0C8-BD6B-4F58-94B6-E81F953E4B0A}|GoalsAPI\\GoalsAPI.csproj|solutionrelative:goalsapi\\models\\goaldtos\\goalforupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7D5A0C8-BD6B-4F58-94B6-E81F953E4B0A}|GoalsAPI\\GoalsAPI.csproj|c:\\users\\pedro\\source\\repos\\goalsapp\\goalsapi\\goalsapi\\models\\goaldtos\\goaldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7D5A0C8-BD6B-4F58-94B6-E81F953E4B0A}|GoalsAPI\\GoalsAPI.csproj|solutionrelative:goalsapi\\models\\goaldtos\\goaldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7D5A0C8-BD6B-4F58-94B6-E81F953E4B0A}|GoalsAPI\\GoalsAPI.csproj|c:\\users\\pedro\\source\\repos\\goalsapp\\goalsapi\\goalsapi\\data\\entities\\goal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7D5A0C8-BD6B-4F58-94B6-E81F953E4B0A}|GoalsAPI\\GoalsAPI.csproj|solutionrelative:goalsapi\\data\\entities\\goal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7D5A0C8-BD6B-4F58-94B6-E81F953E4B0A}|GoalsAPI\\GoalsAPI.csproj|c:\\users\\pedro\\source\\repos\\goalsapp\\goalsapi\\goalsapi\\data\\entities\\taskitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7D5A0C8-BD6B-4F58-94B6-E81F953E4B0A}|GoalsAPI\\GoalsAPI.csproj|solutionrelative:goalsapi\\data\\entities\\taskitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "20240725212947_InitialMigration.cs",
+              "DocumentMoniker": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsAPI\\GoalsAPI\\Migrations\\20240725212947_InitialMigration.cs",
+              "RelativeDocumentMoniker": "GoalsAPI\\Migrations\\20240725212947_InitialMigration.cs",
+              "ToolTip": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsAPI\\GoalsAPI\\Migrations\\20240725212947_InitialMigration.cs",
+              "RelativeToolTip": "GoalsAPI\\Migrations\\20240725212947_InitialMigration.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-25T21:29:47.611Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "20240725212225_InitialMigration.cs",
+              "DocumentMoniker": "C:\\Users\\Pedro\\source\\repos\\GoalsAPI\\GoalsAPI\\Migrations\\20240725212225_InitialMigration.cs",
+              "RelativeDocumentMoniker": "..\\..\\GoalsAPI\\GoalsAPI\\Migrations\\20240725212225_InitialMigration.cs",
+              "ToolTip": "C:\\Users\\Pedro\\source\\repos\\GoalsAPI\\GoalsAPI\\Migrations\\20240725212225_InitialMigration.cs",
+              "RelativeToolTip": "..\\..\\GoalsAPI\\GoalsAPI\\Migrations\\20240725212225_InitialMigration.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-25T21:22:25.626Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "20240725193626_InitialMigration.cs",
+              "DocumentMoniker": "C:\\Users\\Pedro\\source\\repos\\GoalsAPI\\GoalsAPI\\Migrations\\20240725193626_InitialMigration.cs",
+              "RelativeDocumentMoniker": "..\\..\\GoalsAPI\\GoalsAPI\\Migrations\\20240725193626_InitialMigration.cs",
+              "ToolTip": "C:\\Users\\Pedro\\source\\repos\\GoalsAPI\\GoalsAPI\\Migrations\\20240725193626_InitialMigration.cs",
+              "RelativeToolTip": "..\\..\\GoalsAPI\\GoalsAPI\\Migrations\\20240725193626_InitialMigration.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-25T19:36:26.712Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "GoalForUpdateDto.cs",
+              "DocumentMoniker": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsAPI\\GoalsAPI\\Models\\GoalDtos\\GoalForUpdateDto.cs",
+              "RelativeDocumentMoniker": "GoalsAPI\\Models\\GoalDtos\\GoalForUpdateDto.cs",
+              "ToolTip": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsAPI\\GoalsAPI\\Models\\GoalDtos\\GoalForUpdateDto.cs",
+              "RelativeToolTip": "GoalsAPI\\Models\\GoalDtos\\GoalForUpdateDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-25T19:34:42.718Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "GoalForCreationDto.cs",
+              "DocumentMoniker": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsAPI\\GoalsAPI\\Models\\GoalDtos\\GoalForCreationDto.cs",
+              "RelativeDocumentMoniker": "GoalsAPI\\Models\\GoalDtos\\GoalForCreationDto.cs",
+              "ToolTip": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsAPI\\GoalsAPI\\Models\\GoalDtos\\GoalForCreationDto.cs",
+              "RelativeToolTip": "GoalsAPI\\Models\\GoalDtos\\GoalForCreationDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-25T19:34:27.21Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "GoalDto.cs",
+              "DocumentMoniker": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsAPI\\GoalsAPI\\Models\\GoalDtos\\GoalDto.cs",
+              "RelativeDocumentMoniker": "GoalsAPI\\Models\\GoalDtos\\GoalDto.cs",
+              "ToolTip": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsAPI\\GoalsAPI\\Models\\GoalDtos\\GoalDto.cs",
+              "RelativeToolTip": "GoalsAPI\\Models\\GoalDtos\\GoalDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-25T19:34:13.802Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Goal.cs",
+              "DocumentMoniker": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsAPI\\GoalsAPI\\Data\\Entities\\Goal.cs",
+              "RelativeDocumentMoniker": "GoalsAPI\\Data\\Entities\\Goal.cs",
+              "ToolTip": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsAPI\\GoalsAPI\\Data\\Entities\\Goal.cs",
+              "RelativeToolTip": "GoalsAPI\\Data\\Entities\\Goal.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAYwBEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-25T19:28:54.911Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "TaskItem.cs",
+              "DocumentMoniker": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsAPI\\GoalsAPI\\Data\\Entities\\TaskItem.cs",
+              "RelativeDocumentMoniker": "GoalsAPI\\Data\\Entities\\TaskItem.cs",
+              "ToolTip": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsAPI\\GoalsAPI\\Data\\Entities\\TaskItem.cs",
+              "RelativeToolTip": "GoalsAPI\\Data\\Entities\\TaskItem.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-25T19:28:48.492Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IGoalService.cs",
+              "DocumentMoniker": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsAPI\\GoalsAPI\\Services\\IGoalService.cs",
+              "RelativeDocumentMoniker": "GoalsAPI\\Services\\IGoalService.cs",
+              "ToolTip": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsAPI\\GoalsAPI\\Services\\IGoalService.cs",
+              "RelativeToolTip": "GoalsAPI\\Services\\IGoalService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-25T19:20:51.824Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GoalService.cs",
+              "DocumentMoniker": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsAPI\\GoalsAPI\\Services\\GoalService.cs",
+              "RelativeDocumentMoniker": "GoalsAPI\\Services\\GoalService.cs",
+              "ToolTip": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsAPI\\GoalsAPI\\Services\\GoalService.cs",
+              "RelativeToolTip": "GoalsAPI\\Services\\GoalService.cs",
+              "ViewState": "AQIAAEIAAAAAAAAAAAAAAFwAAAA/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-25T19:20:51.037Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TaskItemController.cs",
+              "DocumentMoniker": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsAPI\\GoalsAPI\\Controllers\\TaskItemController.cs",
+              "RelativeDocumentMoniker": "GoalsAPI\\Controllers\\TaskItemController.cs",
+              "ToolTip": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsAPI\\GoalsAPI\\Controllers\\TaskItemController.cs",
+              "RelativeToolTip": "GoalsAPI\\Controllers\\TaskItemController.cs",
+              "ViewState": "AQIAADIAAAAAAAAAAAAAAE4AAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-25T19:20:31.673Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GoalController.cs",
+              "DocumentMoniker": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsAPI\\GoalsAPI\\Controllers\\GoalController.cs",
+              "RelativeDocumentMoniker": "GoalsAPI\\Controllers\\GoalController.cs",
+              "ToolTip": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsAPI\\GoalsAPI\\Controllers\\GoalController.cs",
+              "RelativeToolTip": "GoalsAPI\\Controllers\\GoalController.cs",
+              "ViewState": "AQIAAD8AAAAAAAAAAAAAAE0AAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-25T19:20:31.195Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

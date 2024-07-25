@@ -1,0 +1,110 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsClient\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{55D7F0F7-6056-4C11-895E-D7FBB00A12BA}|GoalsClient\\GoalsClient.csproj|c:\\users\\pedro\\source\\repos\\goalsapp\\goalsclient\\goalsclient\\pages\\index.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{55D7F0F7-6056-4C11-895E-D7FBB00A12BA}|GoalsClient\\GoalsClient.csproj|solutionrelative:goalsclient\\pages\\index.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55D7F0F7-6056-4C11-895E-D7FBB00A12BA}|GoalsClient\\GoalsClient.csproj|c:\\users\\pedro\\source\\repos\\goalsapp\\goalsclient\\goalsclient\\pages\\index.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55D7F0F7-6056-4C11-895E-D7FBB00A12BA}|GoalsClient\\GoalsClient.csproj|solutionrelative:goalsclient\\pages\\index.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55D7F0F7-6056-4C11-895E-D7FBB00A12BA}|GoalsClient\\GoalsClient.csproj|c:\\users\\pedro\\source\\repos\\goalsapp\\goalsclient\\goalsclient\\services\\goalservice\\goalservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55D7F0F7-6056-4C11-895E-D7FBB00A12BA}|GoalsClient\\GoalsClient.csproj|solutionrelative:goalsclient\\services\\goalservice\\goalservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55D7F0F7-6056-4C11-895E-D7FBB00A12BA}|GoalsClient\\GoalsClient.csproj|c:\\users\\pedro\\source\\repos\\goalsapp\\goalsclient\\goalsclient\\services\\taskitemservice\\itaskitemsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55D7F0F7-6056-4C11-895E-D7FBB00A12BA}|GoalsClient\\GoalsClient.csproj|solutionrelative:goalsclient\\services\\taskitemservice\\itaskitemsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55D7F0F7-6056-4C11-895E-D7FBB00A12BA}|GoalsClient\\GoalsClient.csproj|c:\\users\\pedro\\source\\repos\\goalsapp\\goalsclient\\goalsclient\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{55D7F0F7-6056-4C11-895E-D7FBB00A12BA}|GoalsClient\\GoalsClient.csproj|solutionrelative:goalsclient\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.razor",
+              "DocumentMoniker": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsClient\\GoalsClient\\Pages\\Index.razor",
+              "RelativeDocumentMoniker": "GoalsClient\\Pages\\Index.razor",
+              "ToolTip": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsClient\\GoalsClient\\Pages\\Index.razor",
+              "RelativeToolTip": "GoalsClient\\Pages\\Index.razor",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAJ4AAABjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-25T04:59:46.465Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GoalService.cs",
+              "DocumentMoniker": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsClient\\GoalsClient\\Services\\GoalService\\GoalService.cs",
+              "RelativeDocumentMoniker": "GoalsClient\\Services\\GoalService\\GoalService.cs",
+              "ToolTip": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsClient\\GoalsClient\\Services\\GoalService\\GoalService.cs",
+              "RelativeToolTip": "GoalsClient\\Services\\GoalService\\GoalService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-25T21:26:51.45Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ITaskItemsService.cs",
+              "DocumentMoniker": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsClient\\GoalsClient\\Services\\TaskItemService\\ITaskItemsService.cs",
+              "RelativeDocumentMoniker": "GoalsClient\\Services\\TaskItemService\\ITaskItemsService.cs",
+              "ToolTip": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsClient\\GoalsClient\\Services\\TaskItemService\\ITaskItemsService.cs",
+              "RelativeToolTip": "GoalsClient\\Services\\TaskItemService\\ITaskItemsService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-25T21:26:49.631Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.razor.cs",
+              "DocumentMoniker": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsClient\\GoalsClient\\Pages\\Index.razor.cs",
+              "RelativeDocumentMoniker": "GoalsClient\\Pages\\Index.razor.cs",
+              "ToolTip": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsClient\\GoalsClient\\Pages\\Index.razor.cs",
+              "RelativeToolTip": "GoalsClient\\Pages\\Index.razor.cs",
+              "ViewState": "AQIAAAkBAAAAAAAAAAAewDgAAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-25T05:39:33.848Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "App.razor",
+              "DocumentMoniker": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsClient\\GoalsClient\\App.razor",
+              "RelativeDocumentMoniker": "GoalsClient\\App.razor",
+              "ToolTip": "C:\\Users\\Pedro\\source\\repos\\GoalsApp\\GoalsClient\\GoalsClient\\App.razor",
+              "RelativeToolTip": "GoalsClient\\App.razor",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-07-25T04:45:41.006Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
