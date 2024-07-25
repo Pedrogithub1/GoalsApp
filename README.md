@@ -6,3 +6,4 @@
 5. Run GoalAPI in Visual Studio or with dotnet run in the command line.
 6. Open and run GoalClient.sln in Visual Studio and Execute it.
    
+![image](https://github.com/user-attachments/assets/993e07f1-067d-4570-98f1-2982981a2e78)
