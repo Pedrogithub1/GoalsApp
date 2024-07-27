@@ -30,7 +30,7 @@
                                     <MudText Style="font-weight:bold; cursor: pointer;" @onclick="() => SelectGoal(goal.GoalId)">@goal.Name</MudText>
                                     <MudItem Class="d-flex" Style="float:right; justify-content: space-between">
                                         <MudIconButton Icon="@Icons.Material.Filled.Edit" Color="Color.Default" Class="mr-2" Size="Size.Small" @onclick="() => ShowGoalDialog(true, goal)"></MudIconButton>
-                                        <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Default" Size="Size.Small" @onclick="() => OpenDeleteDialog(goal.GoalId)"></MudIconButton>
+                                        <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Default" Size="Size.Small" @onclick="() => OpenDeleteDialog(new List<int> { goal.GoalId }, true)"></MudIconButton>
                                     </MudItem>
                                 </MudItem>
 
@@ -51,61 +51,56 @@
         </MudPaper>
     </MudItem>
     <MudItem xs="8" sm="8" md="8" lg="8">
-        <MudPaper Class=" mud-width-full pa-3" Style="height: 80vh; overflow-y: scroll">
-
+        <MudPaper Class="mud-width-full pa-3" Style="height: 80vh; overflow-y: scroll;">
             <MudButton @onclick="() => ShowTaskItemDialog(false)" Variant="Variant.Filled" Color="Color.Info" StartIcon="@Icons.Material.Filled.Add" Class="mb-2 mr-2">Agregar Tarea</MudButton>
-            @if(IsTaskItemSelected)
+            @if (IsAnyTaskItemSelected)
             {
-                <MudButton @onclick="() => UpdateTaskItem(true)" Variant="Variant.Filled" Color="Color.Info" StartIcon="@Icons.Material.Filled.CheckCircleOutline" Class="mb-2">Completar Tarea</MudButton>
-                <MudButton @onclick="() => ShowTaskItemDialog(true)" Variant="Variant.Filled" Color="Color.Info" StartIcon="@Icons.Material.Filled.Edit" Class="mb-2">Editar</MudButton>
-                <MudButton @onclick="() => OpenDeleteDialog(selectedTaskItem.TaskItemId, false)" Variant="Variant.Filled" Color="Color.Info" StartIcon="@Icons.Material.Filled.Delete" Class="mb-2">Eliminar</MudButton>
+                <MudButton @onclick="() => UpdateTaskItem(true)" Variant="Variant.Filled" Color="Color.Info" StartIcon="@Icons.Material.Filled.CheckCircleOutline" Class="mb-2 mr-2">Completar Tarea</MudButton>
+                @if (IsSingleTaskItemSelected)
+                {
+                    <MudButton @onclick="() => ShowTaskItemDialog(true)" Variant="Variant.Filled" Color="Color.Info" StartIcon="@Icons.Material.Filled.Edit" Class="mb-2 mr-2">Editar</MudButton>
+                }
+                <MudButton @onclick="() => OpenDeleteDialog(selectedTaskItems.Select(t => t.TaskItemId).ToList(), false)" Variant="Variant.Filled" Color="Color.Info" StartIcon="@Icons.Material.Filled.Delete" Class="mb-2">Eliminar</MudButton>
             }
             @if (goalSelectedId != -1)
             {
+                string taskHeaderStyle = "background-color: #adc2c2; font-weight: bold;";
+                string taskFilterStyle = "background-color: #ffffff; color: #000000;";
                 <MudTable T="TaskItem" Items="FilteredTaskItems" Hover="true">
                     <HeaderContent>
-                        <MudTh style="background-color: #adc2c2; font-weight: bold;"></MudTh>
-                        <MudTh style="background-color: #adc2c2; font-weight: bold;"></MudTh>
-                        <MudTh style="background-color: #adc2c2; font-weight: bold;">
+                        <MudTh Style="@taskHeaderStyle"></MudTh>
+                        <MudTh Style="@taskHeaderStyle"></MudTh>
+                        <MudTh Style="@taskHeaderStyle">
                             Tarea
-                            <MudTextField  @bind-Value="taskFilter" Variant="Variant.Outlined" Margin="Margin.Dense" Immediate
-                                          Style="background-color: #ffffff; color: #000000;" Clearable />
+                            <MudTextField @bind-Value="taskFilter" Variant="Variant.Outlined" Margin="Margin.Dense" Immediate Style="@taskFilterStyle" Clearable />
                         </MudTh>
-                        <MudTh style="background-color: #adc2c2; font-weight: bold;">
+                        <MudTh Style="@taskHeaderStyle">
                             Fecha
-                            <MudDatePicker Placeholder="dd/mm/aaaa" @bind-Date="dateFilter" Variant="Variant.Outlined" Margin="Margin.Dense"
-                                           Style="background-color: #ffffff; color: #000000;" Color="Color.Info" Clearable />
+                            <MudDatePicker Placeholder="dd/mm/aaaa" @bind-Date="dateFilter" Variant="Variant.Outlined" Margin="Margin.Dense" Style="@taskFilterStyle" Color="Color.Info" Clearable />
                         </MudTh>
-                        <MudTh style="background-color: #adc2c2; font-weight: bold;">
+                        <MudTh Style="@taskHeaderStyle">
                             Estado
-                            <MudTextField  @bind-Value="statusFilter" Variant="Variant.Outlined" Margin="Margin.Dense" Immediate
-                                          Style="background-color: #ffffff; color: #000000;" Clearable />
+                            <MudTextField @bind-Value="statusFilter" Variant="Variant.Outlined" Margin="Margin.Dense" Immediate Style="@taskFilterStyle" Clearable />
                         </MudTh>
                     </HeaderContent>
                     <RowTemplate>
-                        <MudTd @onclick="() => SelectTaskItem(context)" Style="@($"background-color: {(selectedTaskItem == context ? "#c2dbff" : "")}")">
-                            <MudCheckBox T="bool" Value="@(selectedTaskItem == context)" Color="Color.Primary" UnCheckedColor="Color.Default" Class="mr-2"
-                                         ValueChanged="(e) => SelectTaskItem(e ? context : null)">
+                        @{
+                            string style = $"background-color: {(selectedTaskItems.Contains(context) ? "#c2dbff" : "")}";
+                        }
+                        <MudTd @onclick="() => SelectTaskItem(context)" Style="@style">
+                            <MudCheckBox T="bool" Checked="@(selectedTaskItems.Contains(context))" Color="Color.Primary" UnCheckedColor="Color.Default" Class="mr-2"
+                                         CheckedChanged="(e) => SelectTaskItem(e ? context : null)">
                             </MudCheckBox>
                         </MudTd>
-                        <MudTd Style="@($"background-color: {(selectedTaskItem == context ? "#c2dbff" : "")}")">
+                        <MudTd Style="@style">
                             <MudRating SelectedValue="0" MaxValue="1" />
                         </MudTd>
-                        <MudTd @onclick="() => SelectTaskItem(context)" Style="@($"background-color: {(selectedTaskItem == context ? "#c2dbff" : "")}")">
+                        <MudTd @onclick="() => SelectTaskItem(context)" Style="@style">
                             @context.Name
                         </MudTd>
-                        <MudTd @onclick="() => SelectTaskItem(context)" Style="@($"background-color: {(selectedTaskItem == context ? "#c2dbff" : "")}")">@context.Date.ToShortDateString()</MudTd>
-                        <MudTd @onclick="() => SelectTaskItem(context)" Style="@($"background-color: {(selectedTaskItem == context ? "#c2dbff" : "")}")">
-                            @if (context.Status == "Completada")
-                            {
-                                <span style="color: #00664a; font-weight: bold">@context.Status</span>
-                            }
-                            else
-                            {
-                                <span>@context.Status</span>
-
-                            }
-
+                        <MudTd @onclick="() => SelectTaskItem(context)" Style="@style">@context.Date.ToShortDateString()</MudTd>
+                        <MudTd @onclick="() => SelectTaskItem(context)" Style="@style">
+                            <span style="@(context.Status == "Completada" ? "color: #00664a; font-weight: bold" : "")">@context.Status</span>
                         </MudTd>
                     </RowTemplate>
                     <PagerContent>
@@ -185,13 +180,13 @@
             else
             {
                 <span>
-                    Que desea eliminar la tarea seleccionada
+                    Que desea eliminar las tareas seleccionadas
                 </span>
             }
         </MudText>
     </DialogContent>
     <DialogActions>
-        <MudButton @onclick="() => DeleteGoal()" Color="Color.Info" StartIcon="@Icons.Material.Filled.Delete" Variant="Variant.Filled">Aceptar</MudButton>
+        <MudButton @onclick="() => DeleteGoalOrTasks()" Color="Color.Info" StartIcon="@Icons.Material.Filled.Delete" Variant="Variant.Filled">Aceptar</MudButton>
         <MudButton OnClick="CloseDeleteModal" Variant="Variant.Filled">Cancelar</MudButton>
     </DialogActions>
 </MudDialog>

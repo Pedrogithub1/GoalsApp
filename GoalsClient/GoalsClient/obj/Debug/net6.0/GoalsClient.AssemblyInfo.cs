@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GoalsClient")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+51a20ec807befb207be54ed0ac079c78aba215a4")]
 [assembly: System.Reflection.AssemblyProductAttribute("GoalsClient")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GoalsClient")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

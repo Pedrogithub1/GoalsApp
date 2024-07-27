@@ -8,35 +8,25 @@ namespace GoalsClient.Pages
 {
     public partial class Index
     {
-
         #region Variables
+
+        // Data
         public List<Goal> _Goals { get; set; } = new();
         public List<TaskItem> _TaskItems { get; set; } = new();
 
+        // State
         private Goal goalEdited = new();
         private TaskItem taskItemEdited = new();
-
         private bool isEditing = false;
         private bool isEditingTask = false;
         private string goalName = string.Empty;
         private string taskItemName = string.Empty;
-        bool showGoalDialog = false;
-        bool showTaskDialog = false;
+        private bool showGoalDialog = false;
+        private bool showTaskDialog = false;
+        private List<TaskItem> selectedTaskItems = new();
+        private int goalSelectedId = -1;
 
-        private DialogOptions dialogGoalOptions = new() { CloseOnEscapeKey = true, MaxWidth=MaxWidth.ExtraSmall, FullWidth = true, CloseButton = true };
-
-        //Delete Modal
-        private bool visibleDelete = false;
-        public int deleteGoalId = 0;
-        public int deleteTaskItemId = 0;
-        public bool IsDeleteGoal = true;
-        private DialogOptions dialogDeleteOptions = new() { CloseOnEscapeKey = true, MaxWidth = MaxWidth.ExtraSmall, FullWidth = true, Position = DialogPosition.TopCenter, DisableBackdropClick = true, CloseButton = true };
-
-        private TaskItem selectedTaskItem = null; 
-
-        int goalSelectedId = -1;
-
-        //Filters
+        // Filters
         private string taskFilter = "";
         private DateTime? dateFilter;
         private string statusFilter = "";
@@ -46,11 +36,22 @@ namespace GoalsClient.Pages
                           && (!dateFilter.HasValue || task.Date.Date == dateFilter.Value.Date)
                           && (string.IsNullOrEmpty(statusFilter) || task.Status.Contains(statusFilter, StringComparison.OrdinalIgnoreCase)));
 
+        // Dialog Options
+        private readonly DialogOptions dialogGoalOptions = new() { CloseOnEscapeKey = true, MaxWidth = MaxWidth.ExtraSmall, FullWidth = true, CloseButton = true };
+        private readonly DialogOptions dialogDeleteOptions = new() { CloseOnEscapeKey = true, MaxWidth = MaxWidth.ExtraSmall, FullWidth = true, Position = DialogPosition.TopCenter, DisableBackdropClick = true, CloseButton = true };
+
+        // Delete Modal
+        private bool visibleDelete = false;
+        public int deleteGoalId = 0;
+        public List<int> deleteTaskItemIds = new();
+        public bool IsDeleteGoal = true;
 
         #endregion
+
+        #region Lifecycle Methods
+
         protected async override Task OnInitializedAsync()
         {
-
             _Goals = await GoalServices.GetGoals(true);
             if (_Goals.Any())
             {
@@ -58,15 +59,18 @@ namespace GoalsClient.Pages
                 var selectedGoal = _Goals.FirstOrDefault(g => g.GoalId == goalSelectedId);
                 _TaskItems = selectedGoal?.TaskItems.ToList() ?? new List<TaskItem>();
             }
-
         }
+
+        #endregion
+
+        #region Goal Methods
 
         public void ShowGoalDialog(bool editing, Goal? goal = null)
         {
             isEditing = editing;
             if (isEditing)
             {
-                goalEdited = JsonSerializer.Deserialize<Goal>(JsonSerializer.Serialize(goal));
+                goalEdited = Clone(goal);
                 goalName = goal.Name;
             }
             else
@@ -76,41 +80,16 @@ namespace GoalsClient.Pages
             showGoalDialog = true;
         }
 
-        public void ShowTaskItemDialog(bool editing)
-        {
+        private void CloseGoalDialog() => showGoalDialog = false;
 
-            isEditingTask = editing;
-            if (isEditingTask)
-            {
-                taskItemEdited = JsonSerializer.Deserialize<TaskItem>(JsonSerializer.Serialize(selectedTaskItem));
-                taskItemName = selectedTaskItem.Name;
-            }
-            else
-            {
-                taskItemName = string.Empty;
-            }
-            showTaskDialog = true;
-        }
-
-        private void CloseGoalDialog()
-        {
-            showGoalDialog = false;
-        }
-
-        private void CloseTaskDialog()
-        {
-            showGoalDialog = false;
-        }
-
-
-        //Create Goal
         private async Task CreateGoal()
         {
-
-            Goal newGoal = new Goal();
-            newGoal.Name = goalName;
-            newGoal.TotalTasks = 0;
-            newGoal.Date = DateTime.Now;
+            Goal newGoal = new Goal
+            {
+                Name = goalName,
+                TotalTasks = 0,
+                Date = DateTime.Now
+            };
 
             Snackbar.Clear();
 
@@ -119,9 +98,7 @@ namespace GoalsClient.Pages
             if (result.Success)
             {
                 Snackbar.Add($"Meta {goalName} creada!", Severity.Success);
-
-                _Goals.Clear();
-                _Goals = await GoalServices.GetGoals(true);
+                await RefreshGoalsAndTasks();
                 showGoalDialog = false;
             }
             else
@@ -142,15 +119,7 @@ namespace GoalsClient.Pages
             if (result.Success)
             {
                 Snackbar.Add($"Meta {updateGoal.Name} actualizada!", Severity.Success);
-
-                _Goals.Clear();
-                _Goals = await GoalServices.GetGoals(true);
-                if (_Goals.Any())
-                {
-                    _TaskItems.Clear();
-                    var selectedGoal = _Goals.FirstOrDefault(g => g.GoalId == goalSelectedId);
-                    _TaskItems = selectedGoal?.TaskItems.ToList() ?? new List<TaskItem>();
-                }
+                await RefreshGoalsAndTasks();
                 showGoalDialog = false;
             }
             else
@@ -159,105 +128,36 @@ namespace GoalsClient.Pages
             }
         }
 
-        private async Task DeleteGoal()
-        {
-            int deleteId = IsDeleteGoal ? deleteGoalId : deleteTaskItemId;
-            bool response;
+        #endregion
 
-            if (IsDeleteGoal)
+        #region TaskItem Methods
+
+        public void ShowTaskItemDialog(bool editing)
+        {
+            isEditingTask = editing;
+            if (isEditingTask)
             {
-                response = await GoalServices.DeleteGoal(deleteId);
+                taskItemEdited = Clone(selectedTaskItems.FirstOrDefault());
+                taskItemName = selectedTaskItems.FirstOrDefault()?.Name ?? string.Empty;
             }
             else
             {
-                response = await TaskItemsServices.DeleteTaskItem(deleteId);
-                selectedTaskItem = null;
+                taskItemName = string.Empty;
             }
-
-            if (response)
-            {
-                string message = IsDeleteGoal ? "Meta eliminada!" : "Tarea eliminada!";
-                Snackbar.Add(message, Severity.Success);
-
-                _Goals.Clear();
-                _Goals = await GoalServices.GetGoals(true);
-                if (_Goals.Any())
-                {
-                    _TaskItems.Clear();
-                    var selectedGoal = _Goals.FirstOrDefault(g => g.GoalId == goalSelectedId);
-                    _TaskItems = selectedGoal?.TaskItems.ToList() ?? new List<TaskItem>();
-                }
-                showTaskDialog = false;
-                StateHasChanged();
-            }
-            else
-            {
-                string errorMessage = IsDeleteGoal ? "Error al eliminar meta!" : "Error al eliminar tarea!";
-                Snackbar.Add(errorMessage, Severity.Error);
-            }
-
-            visibleDelete = false;
+            showTaskDialog = true;
         }
 
+        private void CloseTaskDialog() => showTaskDialog = false;
 
-        //Delete Modal 
-
-        private void OpenDeleteDialog(int deleteId, bool isGoal = true)
-        {
-            IsDeleteGoal = isGoal;
-            if (isGoal)
-            {
-                deleteGoalId = deleteId;
-            }
-            else
-            {
-                deleteTaskItemId = deleteId;
-
-            }
-            visibleDelete = true;
-        }
-        void CloseDeleteModal() => visibleDelete = false;
-
-
-        private void SelectGoal(int index)
-        {
-            goalSelectedId = index;
-            _TaskItems.Clear();
-            var selectedGoal = _Goals.FirstOrDefault(g => g.GoalId == goalSelectedId);
-            _TaskItems = selectedGoal?.TaskItems.ToList() ?? new List<TaskItem>();
-        }
-
-
-        private void UpdateTaskItems()
-        {
-            var selectedGoal = _Goals.FirstOrDefault(g => g.GoalId == goalSelectedId);
-            _TaskItems = selectedGoal?.TaskItems.ToList() ?? new List<TaskItem>();
-        }
-
-        private void SelectTaskItem(TaskItem taskItem)
-        {
-            if (selectedTaskItem == taskItem)
-            {
-                selectedTaskItem = null;
-            }
-            else
-            {
-                selectedTaskItem = taskItem;
-            }
-        }
-
-        private bool IsTaskItemSelected => selectedTaskItem != null;
-
-
-        //Create Goal
         private async Task CreateTaskItem()
         {
-
-            TaskItem newTaskItem = new TaskItem();
-            newTaskItem.Name = taskItemName;
-            newTaskItem.Date = DateTime.Now;
-            newTaskItem.Status = "Abierta";
-            newTaskItem.GoalId = goalSelectedId;
+            TaskItem newTaskItem = new TaskItem
+            {
+                Name = taskItemName,
+                Date = DateTime.Now,
+                Status = "Abierta",
+                GoalId = goalSelectedId
+            };
 
             Snackbar.Clear();
 
@@ -266,16 +166,8 @@ namespace GoalsClient.Pages
             if (result.Success)
             {
                 Snackbar.Add($"Tarea {taskItemName} creada!", Severity.Success);
-
-                _Goals.Clear();
-                _Goals = await GoalServices.GetGoals(true);
+                await RefreshGoalsAndTasks();
                 showTaskDialog = false;
-                if (_Goals.Any())
-                {
-                    _TaskItems.Clear();
-                    var selectedGoal = _Goals.FirstOrDefault(g => g.GoalId == goalSelectedId);
-                    _TaskItems = selectedGoal?.TaskItems.ToList() ?? new List<TaskItem>();
-                }
                 StateHasChanged();
             }
             else
@@ -286,44 +178,150 @@ namespace GoalsClient.Pages
 
         private async Task UpdateTaskItem(bool? isCompleted = false)
         {
-            TaskItem updateTaskItem = new();
             if (isCompleted == true)
             {
-                updateTaskItem = JsonSerializer.Deserialize<TaskItem>(JsonSerializer.Serialize(selectedTaskItem));
-                updateTaskItem.Status = "Completada";
-
+                foreach (var taskItem in selectedTaskItems)
+                {
+                    taskItem.Status = "Completada";
+                    var result = await TaskItemsServices.UpdateTaskItem(taskItem);
+                    if (!result.Success)
+                    {
+                        Snackbar.Add($"Error al completar tarea: {taskItem.Name}", Severity.Error);
+                        return;
+                    }
+                }
+                Snackbar.Add("Tarea(s) completada(s)!", Severity.Success);
             }
             else
             {
-                updateTaskItem = taskItemEdited;
+                TaskItem updateTaskItem = taskItemEdited;
                 updateTaskItem.Name = taskItemName;
 
-            }
+                Snackbar.Clear();
 
-            Snackbar.Clear();
+                var result = await TaskItemsServices.UpdateTaskItem(updateTaskItem);
 
-            var result = await TaskItemsServices.UpdateTaskItem(updateTaskItem);
-
-            if (result.Success)
-            {
-                Snackbar.Add($"Tarea {updateTaskItem.Name} actualizada!", Severity.Success);
-                _Goals.Clear();
-                _Goals = await GoalServices.GetGoals(true);
-                if (_Goals.Any())
+                if (result.Success)
                 {
-                    _TaskItems.Clear();
-                    var selectedGoal = _Goals.FirstOrDefault(g => g.GoalId == goalSelectedId);
-                    _TaskItems = selectedGoal?.TaskItems.ToList() ?? new List<TaskItem>();
+                    Snackbar.Add($"Tarea {updateTaskItem.Name} actualizada!", Severity.Success);
                 }
-                showTaskDialog = false;
-                selectedTaskItem = null;
-                StateHasChanged();
+                else
+                {
+                    Snackbar.Add($"Error al actualizar tarea: {result.ErrorMessage}", Severity.Error);
+                }
+            }
+            await RefreshGoalsAndTasks();
+            showTaskDialog = false;
+            selectedTaskItems.Clear();
+            StateHasChanged();
+        }
+
+        #endregion
+
+        #region Delete Methods
+
+        private async Task DeleteGoalOrTasks()
+        {
+            if (IsDeleteGoal)
+            {
+                bool response = await GoalServices.DeleteGoal(deleteGoalId);
+                if (response)
+                {
+                    Snackbar.Add("Meta eliminada!", Severity.Success);
+                    await RefreshGoalsAndTasks();
+                    showTaskDialog = false;
+                    StateHasChanged();
+                }
+                else
+                {
+                    Snackbar.Add("Error al eliminar meta!", Severity.Error);
+                }
             }
             else
             {
-                Snackbar.Add($"Error al actualizar tarea: {result.ErrorMessage}", Severity.Error);
+                bool response = true;
+                foreach (var id in deleteTaskItemIds)
+                {
+                    response = await TaskItemsServices.DeleteTaskItem(id);
+                    if (!response) break;
+                }
+                if (response)
+                {
+                    Snackbar.Add("Tarea(s) eliminada(s)!", Severity.Success);
+                    await RefreshGoalsAndTasks();
+                    showTaskDialog = false;
+                    selectedTaskItems.Clear();
+                    StateHasChanged();
+                }
+                else
+                {
+                    Snackbar.Add("Error al eliminar tarea(s)!", Severity.Error);
+                }
+            }
+
+            visibleDelete = false;
+        }
+
+        private void OpenDeleteDialog(List<int> deleteIds, bool isGoal = true)
+        {
+            IsDeleteGoal = isGoal;
+            if (isGoal)
+            {
+                deleteGoalId = deleteIds.FirstOrDefault();
+            }
+            else
+            {
+                deleteTaskItemIds = deleteIds;
+            }
+            visibleDelete = true;
+        }
+
+        private void CloseDeleteModal() => visibleDelete = false;
+
+        #endregion
+
+        #region Helper Methods
+
+        private void SelectGoal(int index)
+        {
+            goalSelectedId = index;
+            UpdateTaskItems();
+        }
+
+        private void UpdateTaskItems()
+        {
+            var selectedGoal = _Goals.FirstOrDefault(g => g.GoalId == goalSelectedId);
+            _TaskItems = selectedGoal?.TaskItems.ToList() ?? new List<TaskItem>();
+        }
+
+        private void SelectTaskItem(TaskItem taskItem)
+        {
+            if (selectedTaskItems.Contains(taskItem))
+            {
+                selectedTaskItems.Remove(taskItem);
+            }
+            else
+            {
+                selectedTaskItems.Add(taskItem);
             }
         }
 
+        private bool IsSingleTaskItemSelected => selectedTaskItems.Count == 1;
+        private bool AreMultipleTaskItemsSelected => selectedTaskItems.Count > 1;
+        private bool IsAnyTaskItemSelected => selectedTaskItems.Count > 0;
+
+        private T Clone<T>(T source) => JsonSerializer.Deserialize<T>(JsonSerializer.Serialize(source));
+
+        private async Task RefreshGoalsAndTasks()
+        {
+            _Goals.Clear();
+            _Goals = await GoalServices.GetGoals(true);
+            if (_Goals.Any())
+            {
+                UpdateTaskItems();
+            }
+        }
+
+        #endregion
     }
 }

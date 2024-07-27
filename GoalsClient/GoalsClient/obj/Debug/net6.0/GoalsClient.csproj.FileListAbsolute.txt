@@ -1660,3 +1660,4 @@ C:\Users\Pedro\source\repos\GoalsApp\GoalsClient\GoalsClient\obj\Debug\net6.0\Go
 C:\Users\Pedro\source\repos\GoalsApp\GoalsClient\GoalsClient\obj\Debug\net6.0\refint\GoalsClient.dll
 C:\Users\Pedro\source\repos\GoalsApp\GoalsClient\GoalsClient\obj\Debug\net6.0\GoalsClient.pdb
 C:\Users\Pedro\source\repos\GoalsApp\GoalsClient\GoalsClient\obj\Debug\net6.0\ref\GoalsClient.dll
+C:\Users\Pedro\source\repos\GoalsApp\GoalsClient\GoalsClient\obj\Debug\net6.0\GoalsClient.sourcelink.json

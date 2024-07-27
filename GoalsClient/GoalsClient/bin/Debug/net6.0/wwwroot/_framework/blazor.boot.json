@@ -1,7 +1,7 @@
 {
   "entryAssembly": "GoalsClient",
   "resources": {
-    "hash": "sha256-m8O/SuOQuYUFeuZqtJe9Jx6GK2exgjlH2U+5zXfcBTw=",
+    "hash": "sha256-kP0DokWfradukPOr3+f8kKFCIYqwpoMAyCCQ5TXwgl8=",
     "runtime": {
       "dotnet.6.0.30.0vy6ri3yuv.js": "sha256-45+wyMAt9YjYwF4PikeWhYvv/KKuYEMhwoXqAPu6iQM=",
       "dotnet.timezones.blat": "sha256-YTQh+6fLXFGHBQ3xWd368q2DdX0uiUvgIBcs17i6yBI=",
@@ -203,10 +203,10 @@
       "mscorlib.dll": "sha256-sObtOnltWHJ5Stb0lWo1AOhoGbHPKNJejyhdDHyec7A=",
       "netstandard.dll": "sha256-Aw5a9ijqeRQg+StQkcNm62mYcoDAOV+3vLOyZSv+aH4=",
       "System.Private.CoreLib.dll": "sha256-xOxQU+wDIWWwnxPOoZdztT4fYsBW3koQCT/sgTPLirk=",
-      "GoalsClient.dll": "sha256-UHrTd94RLKxRX+dr8KWgBRVRJFj/L8jdE3VN5HskcHM="
+      "GoalsClient.dll": "sha256-uu2vi8490lHkNpojdjFZhwRXexlWfPTFvsV3wH4IZSg="
     },
     "pdb": {
-      "GoalsClient.pdb": "sha256-wX1XRp91FdbrApSZphAcgKF8+jEJXVMjCawA7m1lVlI="
+      "GoalsClient.pdb": "sha256-G9TVBElr5ijbI2vKVwHC8GmtFv3ifjJSI0bjyrRwkhI="
     },
     "runtimeAssets": {
       "dotnet.wasm": {
